@@ -15,6 +15,8 @@ var font = new Zdog.Font({
   src: 'UbuntuMono-Regular.ttf'
 });
 
+let isSpinning = true;
+
 // create illo
 let illo = new Zdog.Illustration({
   // set canvas with selector
@@ -22,19 +24,23 @@ let illo = new Zdog.Illustration({
   resize: true,
   rotate: {y: Zdog.TAU/12},
   zoom: .90,
-  translate: {y:-30}
+  translate: {y:-30},
+  dragRotate: true,
+  onDragStart: function(pointer) {
+    isSpinning = false;
+  }
 });
 
 // laptop
 let laptop = new Zdog.Anchor({
   addTo: illo,
-  rotate: {x: -Zdog.TAU/24}
+  rotate: {x: -Zdog.TAU/18}
 });
 
 
 let screenGroup = new Zdog.Group({
   addTo: laptop,
-  rotate: {x: Zdog.TAU/18}
+  rotate: {x: Zdog.TAU/12}
 })
 
 let screen = new Zdog.Box({
@@ -60,7 +66,7 @@ let innerScreen = new Zdog.Box({
   rightFace: false,
   topFace: false,
   bottomFace: false,
-  rotate: {x: Zdog.TAU/18},
+  rotate: {x: Zdog.TAU/12},
   translate: {y: -12, z: 5}
 });
 
@@ -107,7 +113,7 @@ for (let i = 0; i < 12; i++) {
     value: '0',
     color: base,
     translate: {x: -140 + i * (280 / 12) + getRandomInt(-5, 5), y: getRandomInt(-105, 30), z: getRandomInt(70, 120)},
-    rotate: {x: Zdog.TAU/18}
+    rotate: {x: Zdog.TAU/12}
   });
 
   new Zdog.Text({
@@ -119,7 +125,7 @@ for (let i = 0; i < 12; i++) {
     value: '1',
     color: base,
     translate: {x: -135 + i * (280 / 12) + getRandomInt(-5, 5), y: getRandomInt(-105, 30), z: getRandomInt(70, 120)},
-    rotate: {x: Zdog.TAU/18}
+    rotate: {x: Zdog.TAU/12}
   });
 }
 
@@ -132,23 +138,26 @@ let text = new Zdog.Text({
   fill: true,
   textAlign: 'center',
   textBaseline: 'middle',
-  translate: {z: 200}
+  translate: {y: -40, z: 200},
+  rotate: {x: Zdog.TAU/12-Zdog.TAU/18}
 })
 
 text.copy({
   color: accent2,
-  translate: {z: 195}
+  translate: {y: -40, z: 195}
 })
 
 let ticker = 0;
 let cycleCount = 300;
 
 function animate() {
-  let sceneStartRotation = {y:0}; //{y: Zdog.TAU/30};
-  let progress = ticker / cycleCount;
-  let theta = Zdog.easeInOut( progress % 1, 3 ) * Zdog.TAU;
-  illo.rotate.y = theta + sceneStartRotation.y;
-  ticker++;
+  if (isSpinning) {
+    let sceneStartRotation = {y:0}; //{y: Zdog.TAU/30};
+    let progress = ticker / cycleCount;
+    let theta = Zdog.easeInOut( progress % 1, 3 ) * Zdog.TAU;
+    illo.rotate.y = theta + sceneStartRotation.y;
+    ticker++;
+  }
 
   // illo.rotate.y += 0.02;
 
