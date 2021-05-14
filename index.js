@@ -21,7 +21,7 @@ let illo = new Zdog.Illustration({
   element: '.zdog-canvas',
   resize: true,
   rotate: {y: Zdog.TAU/12},
-  zoom: 1,
+  zoom: .90,
   translate: {y:-30}
 });
 
@@ -126,6 +126,7 @@ for (let i = 0; i < 12; i++) {
 let text = new Zdog.Text({
   addTo: illo,
   font: font,
+  fontSize: 80,
   value: "Luke Lavin",
   color: accent,
   fill: true,
