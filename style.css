@@ -3,10 +3,6 @@
   src: url('UbuntuMono-Regular.ttf');
 }
 
-div {
-  font-family: myFirstFont;
-}
-
 .zdog-canvas {
   background: #f4f4f2;
   width: 100%;
@@ -20,28 +16,43 @@ body {
 }
 
 ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  margin:0;
-  padding: 0;
+  margin: 0;
+  padding: 5vw;
+  width: 40vw;
 }
 
 li {
   height: 10vh;
   font-size: 8vh;
   font-family: mono;
+  width: 100%
 }
 
-a {
+.link-item {
   background-color: #bbbfca;
   color: #495464;
   text-decoration: none;
-  height:100%;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-a:hover {
+.link-item:hover {
   background-color: #495464;
   color: #f4f4f2;
   cursor:pointer;
+}
+
+a {
+  background-color: inherit;
+  color: inherit;
+  text-decoration: none;
 }
 
 .header-text {
@@ -97,5 +108,16 @@ a:hover {
     background: #f4f4f2;
     width: 100%;
     margin: 0;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0;
+    padding: 5vw;
+    width: 90vw;
   }
 }
