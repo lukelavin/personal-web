@@ -168,7 +168,12 @@ let text = new Zdog.Text({
 
 text.copy({
   color: accent2,
-  translate: {y: -40, z: 195}
+  translate: {y: -39, z: 195}
+})
+
+text.copy({
+  color: accent2,
+  translate: {y: -38, z: 190}
 })
 
 let ticker = 0;
