@@ -117,19 +117,19 @@ a {
 
   .main-left {
     width: 100vw;
-    max-height: 40vh;
+    max-height: 35vh;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
   .zdog-canvas {
-    margin: -5vh 0 0 0;
+    margin: -5vh 0 -5vh 0;
   }
 
   .main-right {
     width: 100vw;
-    padding-top: 1vh;
+    padding-top: 0vh;
   }
 
   .bio {
