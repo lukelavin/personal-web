@@ -36,8 +36,8 @@ mark {
 
 .bio {
   font-family: mono;
-  font-size: 2vh;
-  line-height: 2.8vh;
+  font-size: 2.5vh;
+  line-height: 3.5vh;
   color: #495464;
   margin: 10vh 10vw 0vh 10vw;
 }
@@ -54,8 +54,8 @@ ul {
 }
 
 li {
-  height: 10vh;
-  font-size: 6vh;
+  height: 8vh;
+  font-size: 5vh;
   font-family: mono;
   width: 75%;
   padding-left: 1vw;
@@ -117,7 +117,7 @@ a {
 
   .main-left {
     width: 100vw;
-    max-height: 50vh;
+    max-height: 40vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -129,6 +129,8 @@ a {
   }
 
   .bio {
+    font-size: 2vh;
+    line-height: 2.8vh;
     margin: 0vh 10vw 0vh 10vw;
   }
 
@@ -145,6 +147,7 @@ a {
 
   li {
     height: 6vh;
+    width: 85%;
   }
 
   .link-item {
