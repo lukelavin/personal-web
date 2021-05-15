@@ -19,6 +19,19 @@ body {
   margin:0;
 }
 
+mark {
+  background-color: #bbbfca;
+  color: #495464;
+}
+
+.bio {
+  font-family: mono;
+  font-size: 2vh;
+  line-height: 2.8vh;
+  color: #495464;
+  margin: 10vh 10vw 0vh 10vw;
+}
+
 ul {
   display: flex;
   flex-direction: column;
@@ -34,7 +47,7 @@ li {
   height: 10vh;
   font-size: 6vh;
   font-family: mono;
-  width: 80%;
+  width: 75%;
   padding-left: 1vw;
   padding-right: 1vw;
 }
@@ -95,7 +108,7 @@ a {
   .splitter {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: start;
     align-items: center;
     position: relative;
     width: 100%;
@@ -104,6 +117,7 @@ a {
 
   .main-left {
     width: 100vw;
+    max-height: 50vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,12 +125,17 @@ a {
 
   .main-right {
     width: 100vw;
+    padding-top: 1vh;
   }
 
   .zdog-canvas {
     background: #f4f4f2;
     width: 100%;
     margin: 0;
+  }
+
+  .bio {
+    margin: 0vh 10vw 5vh 10vw;
   }
 
   ul {
@@ -128,5 +147,18 @@ a {
     margin: 0;
     padding: 5vw;
     width: 90vw;
+  }
+
+  li {
+    height: 6vh;
+  }
+
+  .link-item {
+    font-size: 4vh;
+    box-shadow: 3px 3px 1px #495464;
+  }
+
+  .link-item:hover {
+    box-shadow: 3px 3px 1px #bbbfca;
   }
 }

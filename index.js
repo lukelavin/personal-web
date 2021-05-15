@@ -18,7 +18,9 @@ var font = new Zdog.Font({
 let isSpinning = true;
 let width = window.innerWidth;
 let zoom = 1.25;
-if (width > 1000) {
+if (width > 1500) {
+  zoom = (width - 1500) * .001 + 1.25;
+} else if (width > 1000) {
   zoom = (width - 1000) * .4/500 + .85;
 } else if (width > 375) {
   zoom = (width - 375) * .1/625 + .6;
@@ -43,7 +45,7 @@ let illo = new Zdog.Illustration({
 function updateIlloZoom() {
   let width = window.innerWidth;
   if (width > 1500) {
-    illo.zoom = 1.25;
+    illo.zoom = (width - 1500) * .001 + 1.25;
   } else if (width > 1000) {
     illo.zoom = (width - 1000) * .4/500 + .85;
   } else if (width > 375) {
