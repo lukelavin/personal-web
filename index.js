@@ -16,6 +16,15 @@ var font = new Zdog.Font({
 });
 
 let isSpinning = true;
+let width = window.innerWidth;
+let zoom = 1.25;
+if (width > 1000) {
+  zoom = (width - 1000) * .4/500 + .85;
+} else if (width > 375) {
+  zoom = (width - 375) * .1/625 + .6;
+} else {
+  zoom = (width - 220) * .3/155 + .3;
+}
 
 // create illo
 let illo = new Zdog.Illustration({
@@ -23,13 +32,26 @@ let illo = new Zdog.Illustration({
   element: '.zdog-canvas',
   resize: true,
   rotate: {y: Zdog.TAU/12},
-  zoom: .90,
+  zoom: zoom,
   translate: {y:-30},
   dragRotate: true,
   onDragStart: function(pointer) {
     isSpinning = false;
   }
 });
+
+function updateIlloZoom() {
+  let width = window.innerWidth;
+  if (width > 1500) {
+    illo.zoom = 1.25;
+  } else if (width > 1000) {
+    illo.zoom = (width - 1000) * .4/500 + .85;
+  } else if (width > 375) {
+    illo.zoom = (width - 375) * .1/625 + .6;
+  } else {
+    illo.zoom = (width - 220) * .3/155 + .3;
+  }
+}
 
 // laptop
 let laptop = new Zdog.Anchor({
