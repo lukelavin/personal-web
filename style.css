@@ -128,14 +128,8 @@ a {
     padding-top: 1vh;
   }
 
-  .zdog-canvas {
-    background: #f4f4f2;
-    width: 100%;
-    margin: 0;
-  }
-
   .bio {
-    margin: 0vh 10vw 5vh 10vw;
+    margin: 0vh 10vw 0vh 10vw;
   }
 
   ul {
@@ -145,7 +139,7 @@ a {
     justify-content: center;
     text-align: center;
     margin: 0;
-    padding: 5vw;
+    padding: 5vw 5vw 0vw 5vw;
     width: 90vw;
   }
 
