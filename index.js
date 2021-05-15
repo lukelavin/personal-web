@@ -177,7 +177,7 @@ text.copy({
 })
 
 let ticker = 0;
-let cycleCount = 300;
+let cycleCount = window.innerWidth > 1000 ? 600 : 300;
 
 function animate() {
   if (isSpinning) {
