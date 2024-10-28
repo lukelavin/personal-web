@@ -3,10 +3,17 @@
   src: url('UbuntuMono-Regular.ttf');
 }
 
+:root {
+  --light-gray: #e8e8e8;
+  --gray: #bbbfca;
+  --background-white: #f4f4f2;
+  --dark-gray: #495464;
+}
+
 body {
-  background: #f4f4f2;
+  background: var(--background-white);
   text-align: center;
-  margin:0;
+  margin: 0;
   height: 100vh;
 }
 
@@ -17,11 +24,11 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  padding:0;
+  padding: 0;
 }
 
 .zdog-canvas {
-  background: #f4f4f2;
+  background: var(--background-white);
   width: 100%;
   margin: 0vw;
 }
@@ -31,15 +38,15 @@ body {
 }
 
 mark {
-  background-color: #bbbfca;
-  color: #495464;
+  background-color: var(--gray);
+  color: var(--dark-gray);
 }
 
 .bio {
   font-family: mono;
   font-size: 2.5vh;
   line-height: 3.5vh;
-  color: #495464;
+  color: var(--dark-gray);
   margin: 10vh 10vw 0vh 10vw;
 }
 
@@ -62,19 +69,19 @@ li {
 }
 
 .link-item {
-  background-color: #bbbfca;
-  color: #495464;
+  background-color: var(--gray);
+  color: var(--dark-gray);
   text-decoration: none;
-  width:100%;
+  width: 100%;
   border-radius: 10px;
-  box-shadow: 5px 5px 1px #495464;
+  box-shadow: 5px 5px 1px var(--dark-gray);
 }
 
 .link-item:hover {
-  background-color: #495464;
-  color: #f4f4f2;
-  cursor:pointer;
-  box-shadow: 5px 5px 1px #bbbfca;
+  background-color: var(--dark-gray);
+  color: var(--background-white);
+  cursor: pointer;
+  box-shadow: 5px 5px 1px var(--gray);
 }
 
 a {
@@ -84,12 +91,6 @@ a {
   display: block;
   width: 100%;
   border-radius: 10px;
-}
-
-.header-text {
-  color: #557174;
-  font-family: Andale Mono, sans-serif;
-  font-size: 5vw;
 }
 
 .main-left {
@@ -145,10 +146,10 @@ a {
 
   .link-item {
     font-size: 4vh;
-    box-shadow: 3px 3px 1px #495464;
+    box-shadow: 3px 3px 1px var(--dark-gray);
   }
 
   .link-item:hover {
-    box-shadow: 3px 3px 1px #bbbfca;
+    box-shadow: 3px 3px 1px var(--gray);
   }
 }
