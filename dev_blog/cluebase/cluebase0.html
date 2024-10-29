@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../blog.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../..favicon.ico">
+    <script src="https://unpkg.com/zdog@1/dist/zdog.dist.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/zfont/dist/zfont.min.js"></script>
+    <title>Luke Lavin - Home</title>
+
+    <!-- Primary Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="title" content="Luke Lavin - Home">
+    <meta name="description"
+        content="Hi! I'm Luke Lavin, and this is my personal website. You can find my projects and contact info here.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lukelav.in/">
+    <meta property="og:title" content="Luke Lavin - Home">
+    <meta property="og:description"
+        content="Hi! I'm Luke Lavin, and this is my personal website. You can find my projects and contact info here.">
+    <meta property="og:image" content="https://lukelav.in/card.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://lukelav.in/">
+    <meta property="twitter:title" content="Luke Lavin - Home">
+    <meta property="twitter:description"
+        content="Hi! I'm Luke Lavin, and this is my personal website. You can find my projects and contact info here.">
+    <meta property="twitter:image" content="https://lukelav.in/card.png">
+
+</head>
+
+<body>
+    <div class="layout-container">
+
+        <div class="sticky">
+
+            <div class="sidebar">
+                <div class="home-icon">
+                    <svg class="zdog-canvas" width="200" height="120"></svg>
+                    <script src="../index.js"></script>
+                    <a class="home-icon-link" href="../../index.html">
+                    </a>
+                </div>
+
+                <div class="sidebar-nav">
+                    <div class="sidebar-list">
+                        <div class="sidebar-li"><a class="sidebar-link" href=../index.html>Blog Home</a></div>
+                        <!-- TODO: Direct links to other posts, smaller font, justified left  -->
+                        <!-- TODO: Make font even smaller on the smallest of screens -->
+                        <!-- <a class="sidebar-link" href=../index.html>Cluebase 1 - Scraping</a>
+                        <a class="sidebar-link" href=../index.html>Cluebase 2 - Parsing/Loading</a>
+                        <a class="sidebar-link" href=../index.html>Cluebase 3 - Simple Application</a> -->
+                        <div class="nextPrev">
+                            <a class="sidebar-link" href=../index.html>
+                                <div class="sidebar-li">
+                                    < Prev </div>
+                            </a>
+                            <a class="sidebar-link" href=cluebase1.html>
+                                <div class="sidebar-li">
+                                    Next >
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="blog-container">
+            <div class="blog-title">Cluebase - A Case Study</div>
+            <div markdown="1" class="blog-content">
+
+                <p>It&#39;s been about 5 years since I created <a href="http://cluebase.lukelav.in">Cluebase</a>, a
+                    general-use
+                    API
+                    for retrieving Jeopardy! data of all sorts--clues, episodes, contestants, etc. Since then, I&#39;ve
+                    received
+                    more questions, requests, and even success stories (<a
+                        href="https://www.youtube.com/watch?v=AKN-SKdbYWo">Congrats, Kate!</a>) than I could have ever
+                    expected.
+                    Unfortunately, since its inception Cluebase has been pretty flawed.</p>
+
+                <p>Cluebase&#39;s primary purpose was not to be a quality API, or to be useful for some other
+                    application,
+                    but
+                    rather just for me to gain some practical software engineering experience during a college summer
+                    where
+                    I
+                    had no internship. I had some vague idea of using Cluebase after its creation to build a Jeopardy!
+                    Trainer
+                    app, but for one reason or another, the project fell by the wayside.</p>
+
+                <p>Because Cluebase was made without any sort of direction or quality standard, there are lingering
+                    issues at about every level of its architecture. Now, with a fresh set of eyes and professional
+                    experience in data engineering, I'm going to revisit the project from the start as a case-study of
+                    sorts. At every step, I'll lay out issues with the previous solutions, and evaluate options for the
+                    new implementations. </p>
+
+            </div>
+        </div>
+    </div>
+</body>

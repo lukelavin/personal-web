@@ -11,6 +11,11 @@ body {
     padding: 0px;
 }
 
+@font-face {
+    font-family: mono;
+    src: url('../UbuntuMono-Regular.ttf');
+    font-size: 3em;
+}
 
 /* Main layout with sidebar */
 .layout-container {
@@ -106,7 +111,7 @@ body {
     flex-direction: row;
     align-items: stretch;
     align-content: stretch;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 100%;
 }
 
@@ -115,10 +120,10 @@ body {
     text-decoration: none;
     text-align: center;
     gap: 0.5rem;
-    padding: 0.5rem;
+    padding: 0.5rem 0.5rem;
     border-radius: 4px;
     transition: background 0.2s;
-    width: 100%;
+    width: 80%;
 }
 
 .sidebar-li:hover {
@@ -133,13 +138,13 @@ body {
     text-decoration: none;
     text-align: center;
     gap: 0.5rem;
-    padding: 0.5rem;
+    /* padding: 0.5rem; */
     border-radius: 4px;
     transition: background 0.2s;
     font-size: clamp(1rem, 1.5vw, 1rem);
     font-family: mono, system-ui, -apple-system, sans-serif;
     transition: background 0.2s;
-    width: 100%;
+    width: 40%;
 }
 
 @media (max-width: 1200px) {

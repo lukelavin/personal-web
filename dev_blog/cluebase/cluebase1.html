@@ -49,18 +49,24 @@
                 <div class="sidebar-nav">
                     <div class="sidebar-list">
                         <div class="sidebar-li"><a class="sidebar-link" href=../index.html>Blog Home</a></div>
+                        <div class="article-list">
+                            <div class="">Cluebase - A Case Study</div>
+                        </div>
                         <!-- TODO: Direct links to other posts, smaller font, justified left  -->
                         <!-- TODO: Make font even smaller on the smallest of screens -->
                         <!-- <a class="sidebar-link" href=../index.html>Cluebase 1 - Scraping</a>
                         <a class="sidebar-link" href=../index.html>Cluebase 2 - Parsing/Loading</a>
                         <a class="sidebar-link" href=../index.html>Cluebase 3 - Simple Application</a> -->
                         <div class="nextPrev">
-                            <div class="sidebar-li"><a class="sidebar-link" href=cluebase2.html>
-                                    < Prev</a>
-                            </div>
-                            <div class="sidebar-li"><a class="sidebar-link" href=cluebase2.html>
-                                    Next ></a>
-                            </div>
+                            <a class="sidebar-link" href=../index.html>
+                                <div class="sidebar-li">
+                                    < Prev </div>
+                            </a>
+                            <a class="sidebar-link" href=cluebase1.html>
+                                <div class="sidebar-li">
+                                    Next >
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -68,30 +74,8 @@
         </div>
 
         <div class="blog-container">
-            <div class="blog-title">Cluebase 2.0 devlog</div>
+            <div class="blog-title">Cluebase 2.0 - Part 1: Scraping</div>
             <div markdown="1" class="blog-content">
-
-                <p>It&#39;s been about 5 years since I created <a href="http://cluebase.lukelav.in">Cluebase</a>, a
-                    general-use
-                    API
-                    for retrieving Jeopardy! data of all sorts--clues, episodes, contestants, etc. Since then, I&#39;ve
-                    received
-                    more questions, requests, and even success stories (<a
-                        href="https://www.youtube.com/watch?v=AKN-SKdbYWo">Congrats, Kate!</a>) than I could have ever
-                    expected.
-                    Unfortunately, since its inception Cluebase has been pretty flawed.</p>
-
-                <p>Cluebase&#39;s primary purpose was not to be a quality API, or to be useful for some other
-                    application,
-                    but
-                    rather just for me to gain some practical software engineering experience during a college summer
-                    where
-                    I
-                    had no internship. I had some vague idea of using Cluebase after its creation to build a Jeopardy!
-                    Trainer
-                    app, but for one reason or another, the project fell by the wayside.</p>
-
-                <h2 id="phase-1-scraping">Phase 1: Scraping</h2>
 
                 <p>Let&#39;s start by looking at the existing process and how it can be improved</p>
                 <p>Previous problems:</p>
@@ -167,6 +151,7 @@
                         protection
                     </li>
                 </ul>
+
             </div>
         </div>
     </div>
