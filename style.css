@@ -69,7 +69,7 @@ body {
 }
 
 mark {
-  background-color: var(--gray);
+  background-color: var(--fg1);
   color: var(--bg0_h);
 }
 
