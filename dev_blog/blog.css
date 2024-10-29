@@ -29,14 +29,11 @@ body {
 }
 
 .blog-title {
-    margin: auto;
     font-size: clamp(1.5rem, 5vw, 2rem);
     font-family: mono;
 }
 
-.blog-content {
-    margin: auto;
-}
+.blog-content {}
 
 /* Sidebar styling */
 .sticky {
@@ -47,7 +44,7 @@ body {
     position: sticky;
     top: 0;
     height: 100vh;
-    width: 100vw;
+    width: 300px;
     margin-bottom: -100vh;
 }
 
@@ -99,7 +96,7 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     justify-content: stretch;
 
 }
@@ -107,9 +104,10 @@ body {
 .nextPrev {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    align-content: center;
+    align-items: stretch;
+    align-content: stretch;
     justify-content: center;
+    width: 100%;
 }
 
 .sidebar-li {
@@ -120,6 +118,7 @@ body {
     padding: 0.5rem;
     border-radius: 4px;
     transition: background 0.2s;
+    width: 100%;
 }
 
 .sidebar-li:hover {
@@ -139,9 +138,15 @@ body {
     transition: background 0.2s;
     font-size: clamp(1rem, 1.5vw, 1rem);
     font-family: mono, system-ui, -apple-system, sans-serif;
+    transition: background 0.2s;
+    width: 100%;
 }
 
 @media (max-width: 1200px) {
+    .sticky {
+        width: 200px;
+    }
+
     .sidebar {
         width: 200px;
         min-width: 200px;
@@ -153,8 +158,15 @@ body {
 }
 
 @media (max-width: 480px) {
+
     .layout-container {
         flex-direction: column;
+    }
+
+    .sticky {
+        width: 100vw;
+        height: 140px;
+        margin-bottom: 0;
     }
 
     .sidebar {
@@ -165,7 +177,7 @@ body {
 
     .blog-container {
         margin-left: 0px;
-        margin-top: 140px;
+        margin-top: 0px;
         padding: 1rem;
     }
 
