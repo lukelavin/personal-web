@@ -1,9 +1,35 @@
 // color palette
-const bg = '#f4f4f2';
-const light = '#e8e8e8';
-const base = '#bbbfca';
-const accent = '#495464';
-const accent2 = '#272d36';
+const bg = '#282828';
+const red = '#cc241d';
+const red2 = '#fb4934';
+const green = '#98971a';
+const green2 = '#b8bb26';
+const yellow = '#d79921';
+const yellow2 = '#fabd2f';
+const blue = '#458588';
+const blue2 = '#83a598';
+const purple = '#b16286';
+const purple2 = '#d3869b';
+const aqua = '#689d6a';
+const aqua2 = '#8ec07c';
+const orange = '#d65d0e';
+const orange2 = '#fe8019';
+const gray = '#a89984';
+const gray2 = '#928374';
+const fg = '#ebdbb2';
+const bg0_h = '#1d2021';
+const bg0 = '#282828';
+const bg0_s = '#32302f';
+const bg1 = '#3c3836';
+const bg2 = '#504945';
+const bg3 = '#665c54';
+const bg4 = '#7c6f64';
+const bg5 = '#928374';
+const fg4 = '#a89984';
+const fg3 = '#bdae93';
+const fg2 = '#d5c4a1';
+const fg1 = '#ebdbb2';
+const fg0 = '#fbf1c7';
 
 
 function getRandomInt(start, stop) {
@@ -73,7 +99,7 @@ let screen = new Zdog.Box({
   height: 200,
   depth: 10,
   stroke: 10,
-  color: base,
+  color: bg3,
   fill: true
 });
 
@@ -83,7 +109,7 @@ let innerScreen = new Zdog.Box({
   height: 160,
   depth: 1,
   stroke: 1,
-  color: light,
+  color: bg1,
   fill: true,
   rearFace: false,
   leftFace: false,
@@ -100,7 +126,7 @@ let bottom = new Zdog.Box({
   height: 200,
   depth: 10,
   stroke: 10,
-  color: base,
+  color: bg3,
   fill: true,
   rotate: { x: Zdog.TAU / 4 },
   translate: { y: 90, z: 135 }
@@ -117,7 +143,7 @@ let trackpad = new Zdog.Box({
   depth: 1,
   stroke: 3,
   fill: true,
-  color: light,
+  color: bg1,
   translate: { y: 60, z: 10 }
 });
 
@@ -135,7 +161,7 @@ for (let i = 0; i < 12; i++) {
     stroke: 2,
     fill: true,
     value: '0',
-    color: base,
+    color: bg3,
     translate: { x: -140 + i * (280 / 12) + getRandomInt(-5, 5), y: getRandomInt(-105, 30), z: getRandomInt(70, 120) },
     rotate: { x: Zdog.TAU / 12 }
   });
@@ -147,7 +173,7 @@ for (let i = 0; i < 12; i++) {
     stroke: 2,
     fill: true,
     value: '1',
-    color: base,
+    color: bg3,
     translate: { x: -135 + i * (280 / 12) + getRandomInt(-5, 5), y: getRandomInt(-105, 30), z: getRandomInt(70, 120) },
     rotate: { x: Zdog.TAU / 12 }
   });
@@ -158,7 +184,7 @@ let text = new Zdog.Text({
   font: font,
   fontSize: 80,
   value: "Luke Lavin",
-  color: accent,
+  color: fg1,
   fill: true,
   textAlign: 'center',
   textBaseline: 'middle',
@@ -167,12 +193,12 @@ let text = new Zdog.Text({
 })
 
 text.copy({
-  color: accent2,
+  color: fg3,
   translate: { y: -39, z: 195 }
 })
 
 text.copy({
-  color: accent2,
+  color: fg3,
   translate: { y: -38, z: 190 }
 })
 

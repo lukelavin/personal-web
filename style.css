@@ -1,17 +1,48 @@
+:root {
+  --bg: #282828;
+  --red: #cc241d;
+  --red2: #fb4934;
+  --green: #98971a;
+  --green2: #b8bb26;
+  --yellow: #d79921;
+  --yellow2: #fabd2f;
+  --blue: #458588;
+  --blue2: #83a598;
+  --purple: #b16286;
+  --purple2: #d3869b;
+  --aqua: #689d6a;
+  --aqua2: #8ec07c;
+  --orange: #d65d0e;
+  --orange2: #fe8019;
+  --gray: #a89984;
+  --gray2: #928374;
+  --fg: #ebdbb2;
+  --bg0_h: #1d2021;
+  --bg0: #282828;
+  --bg0_s: #32302f;
+  --bg1: #3c3836;
+  --bg2: #504945;
+  --bg3: #665c54;
+  --bg4: #7c6f64;
+  --bg5: #928374;
+  --fg4: #a89984;
+  --fg3: #bdae93;
+  --fg2: #d5c4a1;
+  --fg1: #ebdbb2;
+  --fg0: #fbf1c7;
+  /* --gray: #e8e8e8;
+  --light-gray: #bbbfca;
+  --background-white: #f4f4f2;
+  --dark-gray: #495464; */
+}
+
 @font-face {
   font-family: mono;
   src: url('UbuntuMono-Regular.ttf');
 }
 
-:root {
-  --light-gray: #e8e8e8;
-  --gray: #bbbfca;
-  --background-white: #f4f4f2;
-  --dark-gray: #495464;
-}
-
 body {
-  background: var(--background-white);
+  background: var(--bg0);
   text-align: center;
   margin: 0;
   height: 100vh;
@@ -28,7 +59,7 @@ body {
 }
 
 .zdog-canvas {
-  background: var(--background-white);
+  background: var(--bg0);
   width: 100%;
   margin: 0vw;
 }
@@ -39,14 +70,14 @@ body {
 
 mark {
   background-color: var(--gray);
-  color: var(--dark-gray);
+  color: var(--bg0_h);
 }
 
 .bio {
   font-family: mono;
   font-size: 2.5vh;
   line-height: 3.5vh;
-  color: var(--dark-gray);
+  color: var(--fg1);
   margin: 10vh 10vw 0vh 10vw;
 }
 
@@ -70,18 +101,18 @@ li {
 
 .link-item {
   background-color: var(--gray);
-  color: var(--dark-gray);
+  color: var(--bg0_h);
   text-decoration: none;
   width: 100%;
   border-radius: 10px;
-  box-shadow: 5px 5px 1px var(--dark-gray);
+  box-shadow: 5px 5px 1px var(--gray2);
 }
 
 .link-item:hover {
-  background-color: var(--dark-gray);
-  color: var(--background-white);
+  background-color: var(--bg4);
+  color: var(--fg1);
   cursor: pointer;
-  box-shadow: 5px 5px 1px var(--gray);
+  box-shadow: 5px 5px 1px var(--bg2);
 }
 
 a {
