@@ -12,21 +12,13 @@ function getRandomInt(start, stop) {
 
 Zfont.init(Zdog);
 var font = new Zdog.Font({
-  src: 'UbuntuMono-Regular.ttf'
+  src: '../../UbuntuMono-Regular.ttf'
 });
 
 let isSpinning = true;
 let width = window.innerWidth;
-let zoom = 1.25;
-if (width > 1500) {
-  zoom = (width - 1500) * .001 + 1.25;
-} else if (width > 1000) {
-  zoom = (width - 1000) * .4 / 500 + .85;
-} else if (width > 375) {
-  zoom = (width - 375) * .1 / 625 + .6;
-} else {
-  zoom = (width - 220) * .3 / 155 + .3;
-}
+
+let zoom = 0.3;
 
 // create illo
 let illo = new Zdog.Illustration({
@@ -35,11 +27,7 @@ let illo = new Zdog.Illustration({
   resize: true,
   rotate: { y: Zdog.TAU / 12 },
   zoom: zoom,
-  translate: { y: -30 },
-  dragRotate: true,
-  onDragStart: function (pointer) {
-    isSpinning = false;
-  }
+  translate: { y: -30 }
 });
 
 function updateIlloZoom() {
@@ -158,7 +146,7 @@ let text = new Zdog.Text({
   font: font,
   fontSize: 80,
   value: "Luke Lavin",
-  color: accent,
+  color: accent2,
   fill: true,
   textAlign: 'center',
   textBaseline: 'middle',
@@ -167,7 +155,7 @@ let text = new Zdog.Text({
 })
 
 text.copy({
-  color: accent2,
+  color: bg,
   translate: { y: -39, z: 195 }
 })
 
@@ -181,9 +169,9 @@ let cycleCount = window.innerWidth > 1000 ? 600 : 300;
 
 function animate() {
   if (isSpinning) {
-    let sceneStartRotation = { y: Zdog.TAU / -12 };
+    let sceneStartRotation = { y: Zdog.TAU / -36 };
     let progress = ticker / cycleCount;
-    let theta = Zdog.easeInOut(progress % 1, 3) * Zdog.TAU;
+    let theta = Zdog.easeInOut(progress % 1, 2) * Zdog.TAU;
     illo.rotate.y = theta + sceneStartRotation.y;
     ticker++;
   }
@@ -199,3 +187,4 @@ animate();
 
 // update & render
 illo.updateRenderGraph();
+
