@@ -14,7 +14,6 @@ body {
 @font-face {
     font-family: mono;
     src: url('../UbuntuMono-Regular.ttf');
-    font-size: em;
 }
 
 /* Main layout with sidebar */
