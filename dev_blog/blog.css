@@ -1,12 +1,43 @@
 :root {
-    --light-gray: #e8e8e8;
-    --gray: #bbbfca;
+    --bg: #282828;
+    --red: #cc241d;
+    --red2: #fb4934;
+    --green: #98971a;
+    --green2: #b8bb26;
+    --yellow: #d79921;
+    --yellow2: #fabd2f;
+    --blue: #458588;
+    --blue2: #83a598;
+    --purple: #b16286;
+    --purple2: #d3869b;
+    --aqua: #689d6a;
+    --aqua2: #8ec07c;
+    --orange: #d65d0e;
+    --orange2: #fe8019;
+    --gray: #a89984;
+    --gray2: #928374;
+    --fg: #ebdbb2;
+    --bg0_h: #1d2021;
+    --bg0: #282828;
+    --bg0_s: #32302f;
+    --bg1: #3c3836;
+    --bg2: #504945;
+    --bg3: #665c54;
+    --bg4: #7c6f64;
+    --bg5: #928374;
+    --fg4: #a89984;
+    --fg3: #bdae93;
+    --fg2: #d5c4a1;
+    --fg1: #ebdbb2;
+    --fg0: #fbf1c7;
+    /* --gray: #e8e8e8;
+    --light-gray: #bbbfca;
     --background-white: #f4f4f2;
-    --dark-gray: #495464;
+    --dark-gray: #495464; */
 }
 
 body {
-    background-color: var(--background-white);
+    background-color: var(--fg0);
     margin: 0px;
     padding: 0px;
 }
@@ -29,7 +60,7 @@ body {
     padding: 2rem;
     font-family: system-ui, -apple-system, sans-serif;
     line-height: 1.6;
-    color: var(--dark-gray);
+    color: var(--bg0);
 }
 
 .blog-title {
@@ -37,7 +68,13 @@ body {
     font-family: mono;
 }
 
-.blog-content {}
+.blog-content a {
+    color: var(--blue)
+}
+
+.blog-content a:visited {
+    color: var(--purple)
+}
 
 /* Sidebar styling */
 .sticky {
@@ -53,7 +90,7 @@ body {
 }
 
 .zdog-canvas {
-    background: var(--dark-gray);
+    background: var(--bg0);
     width: 100%;
     min-width: 200px;
     min-height: 120px;
@@ -78,8 +115,8 @@ body {
     min-width: 300px;
     height: 100%;
     margin: 0;
-    background: var(--dark-gray);
-    color: var(--light-gray);
+    background: var(--bg0);
+    color: var(--gray);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -115,7 +152,7 @@ body {
 }
 
 .sidebar-li {
-    color: var(--light-gray);
+    color: var(--fg1);
     text-decoration: none;
     text-align: center;
     gap: 0.5rem;
@@ -126,9 +163,9 @@ body {
 }
 
 .sidebar-li:hover {
-    background: var(--background-white);
+    background: var(--fg1);
     text-decoration: none;
-    color: var(--dark-gray);
+    color: var(--bg0);
     transition: background 0.2s;
 }
 
