@@ -36,16 +36,22 @@
     --dark-gray: #495464; */
 }
 
+@font-face {
+    font-family: mono;
+    src: url('../UbuntuMono-Regular.ttf');
+}
+
+@font-face {
+    font-family: Ubuntu;
+    src: url('Ubuntu-Regular.ttf');
+}
+
 body {
     background-color: var(--fg0);
     margin: 0px;
     padding: 0px;
 }
 
-@font-face {
-    font-family: mono;
-    src: url('../UbuntuMono-Regular.ttf');
-}
 
 /* Main layout with sidebar */
 .layout-container {
@@ -58,7 +64,7 @@ body {
     max-width: 1200px;
     margin-left: 300px;
     padding: 2rem;
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: Ubuntu, system-ui, -apple-system, sans-serif;
     line-height: 1.6;
     color: var(--bg0);
 }

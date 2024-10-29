@@ -41,6 +41,11 @@
   src: url('UbuntuMono-Regular.ttf');
 }
 
+@font-face {
+  font-family: Ubuntu;
+  src: url('Ubuntu-Regular.ttf');
+}
+
 body {
   background: var(--bg0);
   text-align: center;
@@ -70,11 +75,13 @@ body {
 
 mark {
   background-color: var(--fg1);
-  color: var(--bg0_h);
+  color: var(--bg0);
+  font-family: mono;
+  border-radius: 4px;
 }
 
 .bio {
-  font-family: mono;
+  font-family: Ubuntu, system-ui, -apple-system, sans-serif;
   font-size: 2.5vh;
   line-height: 3.5vh;
   color: var(--fg1);
@@ -101,7 +108,7 @@ li {
 
 .link-item {
   background-color: var(--gray);
-  color: var(--bg0_h);
+  color: var(--bg0);
   text-decoration: none;
   width: 100%;
   border-radius: 10px;
