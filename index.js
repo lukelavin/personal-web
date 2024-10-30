@@ -211,7 +211,7 @@ let cycleCount = window.innerWidth > 1000 ? 600 : 300;
 
 function animate() {
   if (isSpinning) {
-    let sceneStartRotation = { y: Zdog.TAU / -12 };
+    let sceneStartRotation = { y: 0 }; // Zdog.TAU / -12
     let progress = ticker / cycleCount;
     let theta = Zdog.easeInOut(progress % 1, 3) * Zdog.TAU;
     illo.rotate.y = theta + sceneStartRotation.y;

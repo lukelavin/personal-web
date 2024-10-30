@@ -83,7 +83,7 @@ mark {
 .bio {
   font-family: Ubuntu, system-ui, -apple-system, sans-serif;
   font-size: 2.5vh;
-  line-height: 3.5vh;
+  line-height: 3vh;
   color: var(--fg1);
   margin: 10vh 10vw 0vh 10vw;
 }
@@ -93,7 +93,7 @@ ul {
   flex-direction: column;
   align-items: center;
   margin: 0;
-  padding: 5vw;
+  padding: 0vw 5vw 0vw 5vw;
   width: 40vw;
 }
 
