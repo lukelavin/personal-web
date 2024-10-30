@@ -151,7 +151,16 @@ let textGroup = new Zdog.Group({
   addTo: laptop
 })
 
-for (let i = 0; i < 12; i++) {
+possible_colors = [red, green, yellow, orange, blue, purple, aqua]
+let color_weight = [red, green, green, green, yellow, yellow, yellow, blue, purple, purple, aqua, aqua, orange]
+let multicolor = Math.random() < .1;
+let random_color = color_weight[Math.floor(Math.random() * color_weight.length)]
+console.log(random_color)
+const NUM_CHARS = 15;
+for (let i = 0; i < NUM_CHARS; i++) {
+  if (multicolor === true) {
+    random_color = possible_colors[Math.floor(Math.random() * possible_colors.length)]
+  }
   new Zdog.Text({
     addTo: textGroup,
     fontSize: 24,
@@ -159,11 +168,13 @@ for (let i = 0; i < 12; i++) {
     stroke: 2,
     fill: true,
     value: '0',
-    color: bg3,
-    translate: { x: -140 + i * (280 / 12) + getRandomInt(-5, 5), y: getRandomInt(-105, 30), z: getRandomInt(70, 120) },
+    color: random_color,
+    translate: { x: -140 + i * (280 / NUM_CHARS) + getRandomInt(-5, 5), y: getRandomInt(-105, 30), z: getRandomInt(70, 120) },
     rotate: { x: Zdog.TAU / 12 }
   });
-
+  if (multicolor === true) {
+    random_color = possible_colors[Math.floor(Math.random() * possible_colors.length)]
+  }
   new Zdog.Text({
     addTo: textGroup,
     fontSize: 24,
@@ -171,8 +182,8 @@ for (let i = 0; i < 12; i++) {
     stroke: 2,
     fill: true,
     value: '1',
-    color: bg3,
-    translate: { x: -135 + i * (280 / 12) + getRandomInt(-5, 5), y: getRandomInt(-105, 30), z: getRandomInt(70, 120) },
+    color: random_color,
+    translate: { x: -135 + i * (280 / NUM_CHARS) + getRandomInt(-5, 5), y: getRandomInt(-105, 30), z: getRandomInt(70, 120) },
     rotate: { x: Zdog.TAU / 12 }
   });
 }
