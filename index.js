@@ -153,9 +153,13 @@ let keyboard = trackpad.copy({
   translate: { y: -40, z: 10 }
 });
 
+let textGroup = new Zdog.Group({
+  addTo: laptop
+})
+
 for (let i = 0; i < 12; i++) {
   new Zdog.Text({
-    addTo: laptop,
+    addTo: textGroup,
     fontSize: 24,
     font: font,
     stroke: 2,
@@ -167,7 +171,7 @@ for (let i = 0; i < 12; i++) {
   });
 
   new Zdog.Text({
-    addTo: laptop,
+    addTo: textGroup,
     fontSize: 24,
     font: font,
     stroke: 2,
