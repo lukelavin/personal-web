@@ -169,7 +169,7 @@ for (let i = 0; i < NUM_CHARS; i++) {
     fill: true,
     value: '0',
     color: random_color,
-    translate: { x: -140 + i * (280 / NUM_CHARS) + getRandomInt(-5, 5), y: getRandomInt(-105, 30), z: getRandomInt(70, 120) },
+    translate: { x: -140 + i * (280 / NUM_CHARS) + getRandomInt(-5, 5), y: -105 + Math.signum(i % 2 * 2 - 1) * getRandomInt(0, 67), z: getRandomInt(70, 120) },
     rotate: { x: Zdog.TAU / 12 }
   });
   if (multicolor === true) {
@@ -183,7 +183,7 @@ for (let i = 0; i < NUM_CHARS; i++) {
     fill: true,
     value: '1',
     color: random_color,
-    translate: { x: -135 + i * (280 / NUM_CHARS) + getRandomInt(-5, 5), y: getRandomInt(-105, 30), z: getRandomInt(70, 120) },
+    translate: { x: -140 + i * (280 / NUM_CHARS) + getRandomInt(-5, 5), y: (-105 + 67) - Math.sign(i % 2 * 2 - 1) * getRandomInt(0, 67), z: getRandomInt(70, 120) },
     rotate: { x: Zdog.TAU / 12 }
   });
 }

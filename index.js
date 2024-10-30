@@ -161,7 +161,6 @@ possible_colors = [red, green, yellow, orange, blue, purple, aqua]
 let color_weight = [red, green, green, green, yellow, yellow, yellow, blue, purple, purple, aqua, aqua, orange]
 let multicolor = Math.random() < .1;
 let random_color = color_weight[Math.floor(Math.random() * color_weight.length)]
-console.log(random_color)
 const NUM_CHARS = 15;
 for (let i = 0; i < NUM_CHARS; i++) {
   if (multicolor === true) {
@@ -175,7 +174,7 @@ for (let i = 0; i < NUM_CHARS; i++) {
     fill: true,
     value: '0',
     color: random_color,
-    translate: { x: -140 + i * (280 / NUM_CHARS) + getRandomInt(-5, 5), y: getRandomInt(-105, 30), z: getRandomInt(70, 120) },
+    translate: { x: -140 + i * (280 / NUM_CHARS) + getRandomInt(-5, 5), y: (-105 + 67) + Math.sign(i % 2 * 2 - 1) * getRandomInt(0, 67), z: getRandomInt(70, 120) },
     rotate: { x: Zdog.TAU / 12 }
   });
   if (multicolor === true) {
@@ -189,7 +188,7 @@ for (let i = 0; i < NUM_CHARS; i++) {
     fill: true,
     value: '1',
     color: random_color,
-    translate: { x: -135 + i * (280 / NUM_CHARS) + getRandomInt(-5, 5), y: getRandomInt(-105, 30), z: getRandomInt(70, 120) },
+    translate: { x: -140 + i * (280 / NUM_CHARS) + getRandomInt(-5, 5), y: (-105 + 67) - Math.sign(i % 2 * 2 - 1) * getRandomInt(0, 67), z: getRandomInt(70, 120) },
     rotate: { x: Zdog.TAU / 12 }
   });
 }
