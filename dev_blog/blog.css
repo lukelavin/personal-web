@@ -74,12 +74,30 @@ body {
     font-family: mono;
 }
 
+.blog-subtitle {
+    font-size: clamp(1rem, 1.5vw, 1rem);
+    color: var(--bg2);
+}
+
+hr {
+    margin: 1rem 0rem;
+    color: var(--bg1);
+    border: 1px solid var(--bg1);
+}
+
 .blog-content a {
     color: var(--blue)
 }
 
 .blog-content a:visited {
     color: var(--purple)
+}
+
+mark {
+    background-color: var(--bg1);
+    color: var(--fg1);
+    font-family: mono;
+    border-radius: 4px;
 }
 
 /* Sidebar styling */

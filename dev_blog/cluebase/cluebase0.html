@@ -6,6 +6,9 @@
     <link rel="shortcut icon" type="image/x-icon" href="../..favicon.ico">
     <script src="https://unpkg.com/zdog@1/dist/zdog.dist.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/zfont/dist/zfont.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="../gruvbox-highlighting.css">
+    <script>hljs.highlightAll();</script>
     <title>Luke Lavin - Home</title>
 
     <!-- Primary Meta Tags -->
@@ -72,34 +75,98 @@
 
         <div class="blog-container">
             <div class="blog-title">Cluebase - A Case Study</div>
+            <div class="blog-subtitle">by Luke Lavin, published October 30th, 2024</div>
+            <hr>
             <div markdown="1" class="blog-content">
 
                 <p>It&#39;s been about 5 years since I created <a href="http://cluebase.lukelav.in">Cluebase</a>, a
-                    general-use
-                    API
-                    for retrieving Jeopardy! data of all sorts--clues, episodes, contestants, etc. Since then, I&#39;ve
-                    received
-                    more questions, requests, and even success stories (<a
+                    general-use API for retrieving <i>Jeopardy!</i> data of all sorts--clues, episodes, contestants, and
+                    more. Since then, I&#39;ve received more questions, requests, and even success stories (<a
                         href="https://www.youtube.com/watch?v=AKN-SKdbYWo">Congrats, Kate!</a>) than I could have ever
-                    expected.
-                    Unfortunately, since its inception Cluebase has been pretty flawed.</p>
+                    expected. I'm always impressed by the internet's ability to help even the most niche projects find
+                    their target audience. Thank you to everyone who ever tried it out!</p>
 
-                <p>Cluebase&#39;s primary purpose was not to be a quality API, or to be useful for some other
-                    application,
-                    but
-                    rather just for me to gain some practical software engineering experience during a college summer
-                    where
-                    I
-                    had no internship. I had some vague idea of using Cluebase after its creation to build a Jeopardy!
-                    Trainer
-                    app, but for one reason or another, the project fell by the wayside.</p>
+                <p>Unfortunately, Cluebase's usefulness was at times <i>in spite</i> of its own quality (or lack
+                    thereof).
+                    Since its creation, it has been limited by oversights, incompleteness, and just plain bugs.
+                    Cluebase&#39;s primary purpose was not to be a quality API, or to be useful for general-public
+                    consumer application but
+                    rather to help me gain some practical software engineering experience during a college summer
+                    where I had no internship.</p>
 
-                <p>Because Cluebase was made without any sort of direction or quality standard, there are lingering
-                    issues at about every level of its architecture. Now, with a fresh set of eyes and professional
-                    experience in data engineering, I'm going to revisit the project from the start as a case-study of
-                    sorts. At every step, I'll lay out issues with the previous solutions, and evaluate options for the
-                    new implementations. </p>
+                <p>Now, years later with a fresh
+                    set of eyes and professional
+                    experience in data engineering, I'm going to attempt to rebuild Cluebase from the ground-up,
+                    to hopefully learn some do's and don'ts and give the project the love it deserves. </p>
 
+
+
+                <h2>A vision for Cluebase 2.0</h2>
+
+                <p>Part of what hindered Cluebase's development was this lack of direction and committment. It was just
+                    a toy project for practice.
+                    At some point, I had an idea of using Cluebase after its creation to build a
+                    Jeopardy! practice app. Conveniently, the prospect of developing of this higher-level consumer would
+                    provide an opportunity for me to revisit Cluebase and
+                    soften its rough edges. This turned a lot of "I should do this better" moments into "I'll save that
+                    for later" moments.
+                    Then, for one reason or another, that follow-up project fell by the wayside, leaving Cluebase
+                    without any updates or improvements since its release. </p>
+
+                <p>If Cluebase was held back by its lack of direction, then it makes sense to start "Cluebase 2.0" with
+                    an examination of what exactly it should accomplish:</p>
+
+                <p>Ideally, Cluebase is useful as a source-of-truth for Jeopardy data. For simplicity, <b>clue data
+                        should
+                        be the focus of cluebase.</b> If supplementary data like episode and contestants are to be
+                    accessible at
+                    all, they should be only where it doesn't complicate maintaining good clue data.</p>
+
+                <p>
+                    <b>Maintenance of Cluebase should be simple.</b>
+                    It is likely that this project could fall to
+                    the wayside for years yet again. The project needs to be positioned to need little intervention and,
+                    in the case of necessary intervention, to be easy to jump back into at any moment.
+                    Infrastructure setup should be scripted/containerized
+                    where possible. Design should be documented (more simply than a wordy blog post &#128566). All
+                    processes should have robust error handling and recovery. Ingestion and transformation of new data
+                    should be automated, transparent, and modular--when working properly it should be
+                    hands off, and when it fails it should be easy to pick back up at the point of failure. APIs should
+                    be versioned so changes can be deployed without breaking consumer services. Code should be
+                    open-source for committed users to maintain Cluebase for their own personal use in my absence.
+                </p>
+
+                <p>The primary application of Cluebase should be retrieving clues by category and or by difficulty.
+                    <b>Clients (human users or other services) should be able to easily use Cluebase to get clues for
+                        targeted research or practice. Additional</b>, client-tailored applications of the clue data are
+                    to be
+                    expected, but should be handled as a secondary data layer on top of the base level clue data, with
+                    processes and concerns separate from the base data processing. The base Cluebase processing should,
+                    however, do its best to not complicate such processes.
+                </p>
+
+                <p><b>Cluebase should also be capable of providing data in the right format and quantity useful for
+                        training/tuning natural language models, or doing other machine-learning-tailored tasks.</b>
+                    Jeopardy's
+                    hundreds of thousands of question/answer pairs should be made useful even beyond the scope of trivia
+                    games. </p>
+
+
+
+                <h2>Cluebase Capabilities</h2>
+
+                <pre><code>import sys
+
+from flask.cli import FlaskGroup
+
+from app import create_app, db
+
+app = create_app()
+cli = FlaskGroup(create_app=create_app)
+
+if __name__ == '__main__':
+    cli()
+</code></pre>
             </div>
         </div>
     </div>
