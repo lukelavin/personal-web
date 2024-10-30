@@ -214,6 +214,7 @@ body {
         width: 105vw;
         height: 140px;
         margin-bottom: 0;
+        position: absolute;
     }
 
     .sidebar {
@@ -224,7 +225,7 @@ body {
 
     .blog-container {
         margin-left: 0px;
-        margin-top: 0px;
+        margin-top: 140px;
         padding: 1rem;
     }
 

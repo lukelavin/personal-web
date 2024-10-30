@@ -182,18 +182,18 @@ let text = new Zdog.Text({
   fill: true,
   textAlign: 'center',
   textbg2line: 'middle',
-  translate: { y: -40, z: 200 },
+  translate: { y: 0, z: 200 },
   rotate: { x: Zdog.TAU / 12 - Zdog.TAU / 18 }
 })
 
 text.copy({
   color: fg3,
-  translate: { y: -39, z: 195 }
+  translate: { y: 1, z: 195 }
 })
 
 text.copy({
   color: fg3,
-  translate: { y: -38, z: 190 }
+  translate: { y: 2, z: 190 }
 })
 
 let ticker = 0;
@@ -201,9 +201,9 @@ let cycleCount = window.innerWidth > 1000 ? 600 : 300;
 
 function animate() {
   if (isSpinning) {
-    let sceneStartRotation = { y: Zdog.TAU / -36 };
+    let sceneStartRotation = { y: 0 };
     let progress = ticker / cycleCount;
-    let theta = Zdog.easeInOut(progress % 1, 2) * Zdog.TAU;
+    let theta = Zdog.easeInOut(progress % 1, 4) * Zdog.TAU % (Zdog.TAU);
     illo.rotate.y = theta + sceneStartRotation.y;
     ticker++;
   }
