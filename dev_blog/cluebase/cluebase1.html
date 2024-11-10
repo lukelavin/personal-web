@@ -76,11 +76,6 @@
                 </div>
               </a>
             </div>
-            <!-- TODO: Direct links to other posts, smaller font, justified left  -->
-            <!-- TODO: Make font even smaller on the smallest of screens -->
-            <!-- <a class="sidebar-link" href=../index.html>Cluebase 1 - Scraping</a>
-                        <a class="sidebar-link" href=../index.html>Cluebase 2 - Parsing/Loading</a>
-                        <a class="sidebar-link" href=../index.html>Cluebase 3 - Simple Application</a> -->
             <div class="nextPrev">
               <a class="sidebar-link" href=cluebase0.html>
                 <div class="sidebar-li">
@@ -119,7 +114,7 @@
         <h3>1. Data Freshness</h3>
 
         <p>
-          Probably the biggest gap in the original process was it's one-and-done nature. After running the scraping
+          Probably the biggest gap in the original process was its one-and-done nature. After running the scraping
           process a single time, there was no easy way to update the data. In order to include newly aired clues, I
           would need to redownload all html files temporarily, parse the clues from each, load them into the database,
           and then generate a new data dump to use within the database container.
@@ -127,24 +122,21 @@
 
         <p>
           The new web scraping process should be able to grab the latest data incrementally, and the process should be
-          easy to run in an automated setting.
+          able to run in an automated setting--no more image builds just to insert into the database. 
         </p>
 
         <h3>2. Coupled Scrape/Load process</h3>
-        <p>Previously the scraping was coupled with parsing and loading into the db. This made changing any
-          parsing/loading/formatting processes require downloading all existing html pages all over again,
-          which
-          takes
-          hours while under any rate limit respectful to the fragile J! Archive servers. </p>
-        <p>I would like to ideally have a &quot;data lake&quot; of raw HTML, which can be processed and built
-          upon
-          by
-          separate processes. Doing so will also greatly aid in solving the challenges in the actual load
+        <p>Previously the scraping process included parsing the clues from the HTML and loading them into the db. This meant that changing any
+          parsing/loading/formatting logic required downloading every html page all over again, which takes
+          hours using a respectful rate limit for the fragile J! Archive servers. </p>
+        <p>Scraping links and downloading the HTML should be separate from parsing and loading the clues. 
+          By keeping a data lake of raw HTML, I can iterate on as many parse/load processes as necessary, 
+          while only having to download each HTML page once, saving hours of waiting on rate limited requests.
+          Doing so will also greatly aid in solving the challenges in the actual load
           process,
           which will be the next blog entry.</p>
 
-        <h3>2. Data Completeness</h3>
-        <p> The goal of any scraping process was </p>
+        <h3>3. Data Completeness</h3>
         <p>Clues with videos/images/audio that become unanswerable with text only. Perfect world we could use
           all
           these
