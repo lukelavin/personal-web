@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="../blog.css">
+  <link rel="shortcut icon" type="image/x-icon" href="../..favicon.ico">
+  <script src="https://unpkg.com/zdog@1/dist/zdog.dist.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/zfont/dist/zfont.min.js"></script>
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+  <link rel="stylesheet" href="../gruvbox-highlighting.css">
+  <script>hljs.highlightAll();</script>
+  <title>Luke Lavin - Home</title>
+
+  <!-- Primary Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="title" content="Luke Lavin - Home">
+  <meta name="description"
+    content="Hi! I'm Luke Lavin, and this is my personal website. You can find my projects and contact info here.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lukelav.in/">
+  <meta property="og:title" content="Luke Lavin - Home">
+  <meta property="og:description"
+    content="Hi! I'm Luke Lavin, and this is my personal website. You can find my projects and contact info here.">
+  <meta property="og:image" content="https://lukelav.in/card.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://lukelav.in/">
+  <meta property="twitter:title" content="Luke Lavin - Home">
+  <meta property="twitter:description"
+    content="Hi! I'm Luke Lavin, and this is my personal website. You can find my projects and contact info here.">
+  <meta property="twitter:image" content="https://lukelav.in/card.png">
+
+</head>
+
+<body>
+  <div class="layout-container">
+
+    <div class="sticky">
+
+      <div class="sidebar">
+        <div class="home-icon">
+          <svg class="zdog-canvas" width="200" height="120"></svg>
+          <script src="../blog.js"></script>
+          <a class="home-icon-link" href="../../index.html">
+          </a>
+        </div>
+
+        <div class="sidebar-nav">
+          <div class="sidebar-list">
+            <div class="sidebar-li"><a class="sidebar-link" href=../index.html>Blog Home</a></div>
+
+            <div class="article-list">
+              <a class="article-list-link" href="cluebase0.html">
+                <div class="article-list-text">Cluebase - A Case Study</div>
+              </a>
+              <a class="article-list-link" href="cluebase1.html">
+                <div class="article-list-text"> - Part 1: Scraping</div>
+              </a>
+              <a class="article-list-link" href="cluebase2.html">
+                <div class="article-list-text"> - Part 2: Data Load</div>
+              </a>
+              <a class="article-list-link" href="cluebase3.html">
+                <div class="article-list-text"> - Part 3: Automation</div>
+              </a>
+              <a class="article-list-link" href="cluebase4.html">
+                <div class="article-list-text"> - Part 4: Basic API</div>
+              </a>
+              <a class="article-list-link" href="cluebase5.html">
+                <div class="article-list-text"> - Part 5: Basic Front End</div>
+              </a>
+              <a class="article-list-link" href="cluebase6.html">
+                <div class="article-list-text"> - Part 6: A Better Category
+                </div>
+              </a>
+            </div>
+            <div class="nextPrev">
+              <a class="sidebar-link" href=cluebase5.html>
+                <div class="sidebar-li">
+                  < Prev </div>
+              </a>
+              <a class="sidebar-link" href=cluebase7.html>
+                <div class="sidebar-li">
+                  Next >
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="blog-container">
+      <div class="blog-title">Cluebase 2.0 - Part 6: Towards a more useful Category</div>
+      <div class="blog-subtitle">by Luke Lavin, published November 9th, 2024</div>
+      <hr>
+      <div markdown="1" class="blog-content">
+        <p> In <i>Jeopardy!</i>, sometimes the category says more about the format of the clue rather than the
+          knowledge required to provide the correct response. Playing with subversive and witty clues is part
+          of what makes <i>Jeopardy!</i> so beloved, but for any enthusiast or hopeful-contestant trying to gleam
+          info about the most relevant topics to study, or find practice clues similar to those that typically
+          stump them. </p>
+
+        <p> Ideally, Cluebase would be able to solve this by, in addition to keeping category info as-seen-on-TV,
+          providing some sort of additional meta-category that truly portrays the subject matter of each clue.</p>
+
+        <p>
+
+        <h2> Topic Modeling vs Domain Classification </h2>
+
+        <p> Nvidia domain-classifier </p>
+
+        explanation goes here
+
+        implementation example
+
+        challenges:
+
+        184m parameters * 4 bytes per parameter = 736MB
+
+        Takes too long on CPU + full dataset to run on free prefect cloud, even if memory restrictions don't cause
+        problems.
+
+        One time inference run on GPU across all clues, then short inference runs for new clues daily.
+
+        batch size on GPU:
+        saw improvements in speed all the way up through 256 and past, but got intermittent OOMs with 512+, so sticking
+        with 256.
+      </div>
+    </div>
+  </div>
+</body>

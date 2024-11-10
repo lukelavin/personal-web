@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../blog.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../..favicon.ico">
+    <script src="https://unpkg.com/zdog@1/dist/zdog.dist.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/zfont/dist/zfont.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="../gruvbox-highlighting.css">
+    <script>hljs.highlightAll();</script>
+    <title>Luke Lavin - Home</title>
+
+    <!-- Primary Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="title" content="Luke Lavin - Home">
+    <meta name="description"
+        content="Hi! I'm Luke Lavin, and this is my personal website. You can find my projects and contact info here.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lukelav.in/">
+    <meta property="og:title" content="Luke Lavin - Home">
+    <meta property="og:description"
+        content="Hi! I'm Luke Lavin, and this is my personal website. You can find my projects and contact info here.">
+    <meta property="og:image" content="https://lukelav.in/card.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://lukelav.in/">
+    <meta property="twitter:title" content="Luke Lavin - Home">
+    <meta property="twitter:description"
+        content="Hi! I'm Luke Lavin, and this is my personal website. You can find my projects and contact info here.">
+    <meta property="twitter:image" content="https://lukelav.in/card.png">
+
+</head>
+
+<body>
+    <div class="layout-container">
+
+        <div class="sticky">
+
+            <div class="sidebar">
+                <div class="home-icon">
+                    <svg class="zdog-canvas" width="200" height="120"></svg>
+                    <script src="../blog.js"></script>
+                    <a class="home-icon-link" href="../../index.html">
+                    </a>
+                </div>
+
+                <div class="sidebar-nav">
+                    <div class="sidebar-list">
+                        <div class="sidebar-li"><a class="sidebar-link" href=../index.html>Blog Home</a></div>
+                        <div class="article-list">
+                            <a class="article-list-link" href="cluebase0.html">
+                                <div class="article-list-text">Cluebase - A Case Study</div>
+                            </a>
+                            <a class="article-list-link" href="cluebase1.html">
+                                <div class="article-list-text"> - Part 1: Scraping</div>
+                            </a>
+                            <a class="article-list-link" href="cluebase2.html">
+                                <div class="article-list-text"> - Part 2: Data Load</div>
+                            </a>
+                            <a class="article-list-link" href="cluebase3.html">
+                                <div class="article-list-text"> - Part 3: Automation</div>
+                            </a>
+                            <a class="article-list-link" href="cluebase4.html">
+                                <div class="article-list-text"> - Part 4: Basic API</div>
+                            </a>
+                            <a class="article-list-link" href="cluebase5.html">
+                                <div class="article-list-text"> - Part 5: Basic Front End</div>
+                            </a>
+                            <a class="article-list-link" href="cluebase6.html">
+                                <div class="article-list-text"> - Part 6: A Better Category
+                                </div>
+                            </a>
+                        </div>
+                        <div class="nextPrev">
+                            <a class="sidebar-link" href=cluebase1.html>
+                                <div class="sidebar-li">
+                                    < Prev </div>
+                            </a>
+                            <a class="sidebar-link" href=cluebase3.html>
+                                <div class="sidebar-li">
+                                    Next >
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="blog-container">
+            <div class="blog-title">Cluebase 2.0 - Part 2: Data Load</div>
+            <div class="blog-subtitle">by Luke Lavin, published October 31st, 2024</div>
+            <hr>
+            <div markdown="1" class="blog-content">
+
+                <p>Let&#39;s start by looking at the existing process and how it can be improved</p>
+                <p>Previous problems:</p>
+                <h4 id="1-data-completeness">1. Data Completeness</h4>
+                <p>Clues with videos/images/audio that become unanswerable with text only. Perfect world we could use
+                    all
+                    these
+                    clues, but want to at least be able to identify and exclude them in text-only use cases.</p>
+                <p>Most clues with supplementary material have the material linked, which could both provide a way to
+                    use
+                    the
+                    supplementary material in the future and also a way to identify which clues are unusable right now.
+                </p>
+                <p>Some clues require supplementary material but do not have the supplementary material archived. These
+                    clues
+                    are not only unusable now and in the future, but they are hard to find as they are not denoted in a
+                    standardized way, usually with some [editorial notes] or ellipsis..., undifferentiated from other
+                    irrelevant
+                    commentary that takes the same form.</p>
+                <h4 id="2-coupled-scrape-load-process">2. Coupled Scrape/Load process</h4>
+                <p>Previously the scraping was coupled with parsing and loading into the db. This made changing any
+                    parsing/loading/formatting processes require downloading all existing html pages all over again,
+                    which
+                    takes
+                    hours while under any rate limit respectful to the fragile j-archive servers. </p>
+                <p>I would like to ideally have a &quot;data lake&quot; of raw HTML, which can be processed and built
+                    upon
+                    by
+                    separate processes. Doing so will also greatly aid in solving the challenges in the actual load
+                    process,
+                    which will be the next blog entry.</p>
+                <h3 id="plan-">Plan:</h3>
+                <p>Basic web crawler/scraper BFS approach:</p>
+                <p>Start at the root of the site. Download the root page, and grab all links from the page. Then, for
+                    each
+                    link,
+                    download the page, and repeat.</p>
+                <h3 id="dev-progress-">Dev progress:</h3>
+                <p>Currently: Focus on keeping good raw HTML data.</p>
+                <ul>
+                    <li>Downloading season list HTML</li>
+                    <li>Scraping season list HTML for season links, then downloading those HTML files</li>
+                    <li>Scraping season links for game links, then downloading those HTML files</li>
+                </ul>
+                <p>Current problems I&#39;m running into are related to the process being long and flaky. While the
+                    current
+                    flakiness comes from me starting and stopping the process frequently due to active development,
+                    network
+                    and
+                    file actions are inherently flaky, so a long running process dependent on the stability of these is
+                    asking
+                    for problems. </p>
+                <p>The constant start and stop of the process raises the following concerns:</p>
+                <ol>
+                    <li>Data integrity: How do we know a file was fully written, or properly written. How do we know a
+                        request
+                        completed successfully, and returned the full HTML we want.</li>
+                    <li>Processing status: How do we know when we&#39;ve already processed an HTML link. Can we skip
+                        files
+                        we
+                        already have to try to just pick back where we left off? If we do, how do we know when a file is
+                        out
+                        of
+                        date, and actually needs to be updated?</li>
+                </ol>
+                <p>TODO: add some validation checks on html files. Most of the </p>
+                <p>Only intelligence is that it will not overwrite a html file that already exists</p>
+                <ul>
+                    <li>is this how it should work? what if a page exists but is only partially complete (this happens
+                        every
+                        night!)</li>
+                    <li>maybe won&#39;t matter if there&#39;s a scheduled &quot;refresh&quot; that ignores overwrite
+                        protection
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</body>

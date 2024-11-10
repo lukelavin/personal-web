@@ -52,13 +52,32 @@
                 <div class="sidebar-nav">
                     <div class="sidebar-list">
                         <div class="sidebar-li"><a class="sidebar-link" href=''>Blog Home</a></div>
-                        <!-- TODO: Direct links to other posts, smaller font, justified left  -->
-                        <!-- TODO: Make font even smaller on the smallest of screens -->
-                        <!-- <a class="sidebar-link" href=../index.html>Cluebase 1 - Scraping</a>
-                        <a class="sidebar-link" href=../index.html>Cluebase 2 - Parsing/Loading</a>
-                        <a class="sidebar-link" href=../index.html>Cluebase 3 - Simple Application</a> -->
+                        <div class="article-list">
+                            <a class="article-list-link" href="cluebase0.html">
+                                <div class="article-list-text">Cluebase - A Case Study</div>
+                            </a>
+                            <a class="article-list-link" href="cluebase1.html">
+                                <div class="article-list-text"> - Part 1: Scraping</div>
+                            </a>
+                            <a class="article-list-link" href="cluebase2.html">
+                                <div class="article-list-text"> - Part 2: Data Load</div>
+                            </a>
+                            <a class="article-list-link" href="cluebase3.html">
+                                <div class="article-list-text"> - Part 3: Automation</div>
+                            </a>
+                            <a class="article-list-link" href="cluebase4.html">
+                                <div class="article-list-text"> - Part 4: Basic API</div>
+                            </a>
+                            <a class="article-list-link" href="cluebase5.html">
+                                <div class="article-list-text"> - Part 5: Basic Front End</div>
+                            </a>
+                            <a class="article-list-link" href="cluebase6.html">
+                                <div class="article-list-text"> - Part 6: A Better Category
+                                </div>
+                            </a>
+                        </div>
                         <div class="nextPrev">
-                            <a class="sidebar-link" href=../index.html>
+                            <a class="sidebar-link" href=cluebase0.html>
                                 <div class="sidebar-li">
                                     < Prev </div>
                             </a>
@@ -89,10 +108,7 @@
                 <p>Unfortunately, Cluebase's usefulness was at times <i>in spite</i> of its own quality (or lack
                     thereof).
                     Since its creation, it has been limited by oversights, incompleteness, and just plain bugs.
-                    Cluebase&#39;s primary purpose was not to be a quality API, or to be useful for general-public
-                    consumer application but
-                    rather to help me gain some practical software engineering experience during a college summer
-                    where I had no internship.</p>
+                </p>
 
                 <p>Now, years later with a fresh
                     set of eyes and professional
@@ -104,7 +120,10 @@
                 <h2>A vision for Cluebase 2.0</h2>
 
                 <p>Part of what hindered Cluebase's development was this lack of direction and committment. It was just
-                    a toy project for practice.
+                    a toy project for practice. Cluebase&#39;s primary purpose was not to be a quality API, or to be
+                    useful for general-public
+                    consumer application but rather to help me gain some practical software engineering experience
+                    during a college summer where I had no internship.
                     At some point, I had an idea of using Cluebase after its creation to build a
                     Jeopardy! practice app. Conveniently, the prospect of developing of this higher-level consumer would
                     provide an opportunity for me to revisit Cluebase and
@@ -116,11 +135,15 @@
                 <p>If Cluebase was held back by its lack of direction, then it makes sense to start "Cluebase 2.0" with
                     an examination of what exactly it should accomplish:</p>
 
-                <p>Ideally, Cluebase is useful as a source-of-truth for Jeopardy data. For simplicity, <b>clue data
+                <p>
+                    <b>Clue data
                         should
-                        be the focus of cluebase.</b> If supplementary data like episode and contestants are to be
+                        be the focus of cluebase.</b>
+                    Ideally, Cluebase is useful as a source-of-truth for Jeopardy clues. If supplementary data like
+                    episode and contestants are to be
                     accessible at
-                    all, they should be only where it doesn't complicate maintaining good clue data.</p>
+                    all, they should be only where it doesn't complicate maintaining good clue data.
+                </p>
 
                 <p>
                     <b>Maintenance of Cluebase should be simple.</b>
@@ -136,37 +159,68 @@
                     open-source for committed users to maintain Cluebase for their own personal use in my absence.
                 </p>
 
-                <p>The primary application of Cluebase should be retrieving clues by category and or by difficulty.
-                    <b>Clients (human users or other services) should be able to easily use Cluebase to get clues for
-                        targeted research or practice. Additional</b>, client-tailored applications of the clue data are
-                    to be
+                <p><b>Clients (human users or other services) should be able to easily use Cluebase to get clues for
+                        targeted research or practice</b>. The primary application of Cluebase should be retrieving
+                    clues by category and or by difficulty.
+                    Additional, more client-tailored applications of the clue data are to be
                     expected, but should be handled as a secondary data layer on top of the base level clue data, with
                     processes and concerns separate from the base data processing. The base Cluebase processing should,
                     however, do its best to not complicate such processes.
                 </p>
 
-                <p><b>Cluebase should also be capable of providing data in the right format and quantity useful for
+                <p><b>Cluebase data should be useful for
                         training/tuning natural language models, or doing other machine-learning-tailored tasks.</b>
                     Jeopardy's
                     hundreds of thousands of question/answer pairs should be made useful even beyond the scope of trivia
-                    games. </p>
+                    games. It should be possible to export the cluebase dataset in a practical format for ML use cases.
+                </p>
 
+                <p><b>Cluebase should utilize tools that, all else being equal, are used in the industry.</b> Although I
+                    still want to keep the project uncomplicated and its upkeep straightforward, I would still like to
+                    be gaining experience I can talk about, be it on a resume, in interviews, or even on this blog.
+                    Plus, it's just more fun for me if I get to learn new technology along the way. &#128517;</p>
 
+                <h2>Moving from 1.0 to 2.0</h2>
 
-                <h2>Cluebase Capabilities</h2>
+                <p>
+                    So, if that's what 2.0 should look like, how do I get there from 1.0?
+                </p>
+                <p>
+                    Well to start, we should look at Cluebase 1.0's implementation and capabilities.
+                </p>
 
-                <pre><code>import sys
+                <img src="img/cluebase1-diagram.svg" alt="An simplified architecture diagram of Cluebase 1.0"
+                    class="fullwidth-image" />
 
-from flask.cli import FlaskGroup
+                <p>
+                    Cluebase 1.0 was an API offering alone. Cluebase was separate from the scraping process, and did not
+                    offer any user-facing app to consume the API.
+                </p>
 
-from app import create_app, db
+                <p>
+                    The entire project was entirely contained in an EC2 instance, composed (pun-intended) of 4 docker
+                    images--the Flask service, PostgresQL, Redis, and nginx. The deployment was done by running
+                    now-defunct docker machine commands on my local machine with latest changes.
+                </p>
 
-app = create_app()
-cli = FlaskGroup(create_app=create_app)
+                <p>
+                    Even beyond that, the J! Archive scraping was done only once ahead of time. Clues were scraped once
+                    to load into a local database, then the database image was created pre-loaded with the local data.
+                </p>
 
-if __name__ == '__main__':
-    cli()
-</code></pre>
+                <p>
+                    Although several users reported that they were able to use
+                    it to practice trivia, users who did had to write their own consumers, ranging from command line
+                    tools to discord bots.
+                </p>
+
+                <p>
+                    For a inexperienced developer, this format allowed me to focus just on the API development. However,
+                    the missing pieces here mean there's a decent amount of work to do to upgrade Cluebase to its full
+                    potential and support its continued existence. Thankfully, it also means that there's a lot of
+                    development to write about, so let's get started!
+                </p>
+
             </div>
         </div>
     </div>
