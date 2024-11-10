@@ -99,7 +99,7 @@
 
     <div class="blog-container">
       <div class="blog-title">Cluebase 2.0 - Part 1: Scraping</div>
-      <div class="blog-subtitle">by Luke Lavin, published October 31st, 2024</div>
+      <div class="blog-subtitle">by Luke Lavin, published November 9th, 2024</div>
       <hr>
       <div markdown="1" class="blog-content">
 
@@ -111,9 +111,40 @@
           process would have been a waste.
         </p>
 
-        <p>Let&#39;s start by looking at the existing process and how it can be improved</p>
-        <p>Previous problems:</p>
-        <h4 id="1-data-completeness">1. Data Completeness</h4>
+        <p>In other words, there's a lot of work to do in the scraping process. Not much of the existing scraper is
+          usable, so it seems best to just start fresh with a new focus on doing it the right way.</p>
+
+        <h2>Scraping Goals</h2>
+
+        <h3>1. Data Freshness</h3>
+
+        <p>
+          Probably the biggest gap in the original process was it's one-and-done nature. After running the scraping
+          process a single time, there was no easy way to update the data. In order to include newly aired clues, I
+          would need to redownload all html files temporarily, parse the clues from each, load them into the database,
+          and then generate a new data dump to use within the database container.
+        </p>
+
+        <p>
+          The new web scraping process should be able to grab the latest data incrementally, and the process should be
+          easy to run in an automated setting.
+        </p>
+
+        <h3>2. Coupled Scrape/Load process</h3>
+        <p>Previously the scraping was coupled with parsing and loading into the db. This made changing any
+          parsing/loading/formatting processes require downloading all existing html pages all over again,
+          which
+          takes
+          hours while under any rate limit respectful to the fragile J! Archive servers. </p>
+        <p>I would like to ideally have a &quot;data lake&quot; of raw HTML, which can be processed and built
+          upon
+          by
+          separate processes. Doing so will also greatly aid in solving the challenges in the actual load
+          process,
+          which will be the next blog entry.</p>
+
+        <h3>2. Data Completeness</h3>
+        <p> The goal of any scraping process was </p>
         <p>Clues with videos/images/audio that become unanswerable with text only. Perfect world we could use
           all
           these
@@ -129,19 +160,8 @@
           standardized way, usually with some [editorial notes] or ellipsis..., undifferentiated from other
           irrelevant
           commentary that takes the same form.</p>
-        <h4 id="2-coupled-scrape-load-process">2. Coupled Scrape/Load process</h4>
-        <p>Previously the scraping was coupled with parsing and loading into the db. This made changing any
-          parsing/loading/formatting processes require downloading all existing html pages all over again,
-          which
-          takes
-          hours while under any rate limit respectful to the fragile J! Archive servers. </p>
-        <p>I would like to ideally have a &quot;data lake&quot; of raw HTML, which can be processed and built
-          upon
-          by
-          separate processes. Doing so will also greatly aid in solving the challenges in the actual load
-          process,
-          which will be the next blog entry.</p>
-        <h3 id="plan-">Plan:</h3>
+
+        <h2 id="plan-">Plan:</h2>
         <p>Basic web crawler/scraper BFS approach:</p>
         <p>Start at the root of the site. Download the root page, and grab all links from the page. Then, for
           each

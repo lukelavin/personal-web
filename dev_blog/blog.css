@@ -85,6 +85,10 @@ hr {
     border: 1px solid var(--bg1);
 }
 
+h3 {
+    margin: 0;
+}
+
 .blog-content a {
     color: var(--blue)
 }
