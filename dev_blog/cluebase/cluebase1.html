@@ -94,7 +94,7 @@
 
     <div class="blog-container">
       <div class="blog-title">Cluebase 2.0 - Part 1: Scraping</div>
-      <div class="blog-subtitle">by Luke Lavin, published November 9th, 2024</div>
+      <div class="blog-subtitle">by Luke Lavin, published November 10th, 2024</div>
       <hr>
       <div markdown="1" class="blog-content">
 
@@ -114,51 +114,90 @@
         <h3>1. Data Freshness</h3>
 
         <p>
-          Probably the biggest gap in the original process was its one-and-done nature. After running the scraping
-          process a single time, there was no easy way to update the data. In order to include newly aired clues, I
-          would need to redownload all html files temporarily, parse the clues from each, load them into the database,
+          Probably the biggest oversight in the original process was that it was meant to be run only once. After
+          running the scraping
+          process a single time, there was no easy way to run it again to update the data. In order to include newly
+          aired clues, I
+          would need to redownload all html files temporarily, parse the clues from each, load them into the database
+          skipping any duplicates,
           and then generate a new data dump to use within the database container.
         </p>
 
         <p>
-          The new web scraping process should be able to grab the latest data incrementally, and the process should be
-          able to run in an automated setting--no more image builds just to insert into the database. 
+          The new web scraping process should be able to grab the latest data incrementally, which means it needs to
+          track what has been downloaded already, and notice any possible updates.
+        </p>
+        <p>
+          Additionally, the process should be
+          able to run in an automated setting to keep the database up to date without my manual intervention--no more
+          image builds just to insert into the database.
         </p>
 
         <h3>2. Coupled Scrape/Load process</h3>
-        <p>Previously the scraping process included parsing the clues from the HTML and loading them into the db. This meant that changing any
-          parsing/loading/formatting logic required downloading every html page all over again, which takes
+        <p>Previously, the scraping process included parsing the clues from the HTML and loading them into the db. This
+          meant that in order to change any
+          parsing/loading/formatting logic I would need to redownload every html page, which would take
           hours using a respectful rate limit for the fragile J! Archive servers. </p>
-        <p>Scraping links and downloading the HTML should be separate from parsing and loading the clues. 
-          By keeping a data lake of raw HTML, I can iterate on as many parse/load processes as necessary, 
+
+        <p>Scraping links and downloading the HTML should be separate from parsing and loading the clues.
+          By keeping a data lake of raw HTML, I can iterate on the parse/load process as many times as necessary,
           while only having to download each HTML page once, saving hours of waiting on rate limited requests.
-          Doing so will also greatly aid in solving the challenges in the actual load
-          process,
-          which will be the next blog entry.</p>
-
-        <h3>3. Data Completeness</h3>
-        <p>Clues with videos/images/audio that become unanswerable with text only. Perfect world we could use
-          all
-          these
-          clues, but want to at least be able to identify and exclude them in text-only use cases.</p>
-        <p>Most clues with supplementary material have the material linked, which could both provide a way to
-          use
-          the
-          supplementary material in the future and also a way to identify which clues are unusable right now.
+          Doing so will also greatly aid in solving the challenges in the actual load process.
         </p>
-        <p>Some clues require supplementary material but do not have the supplementary material archived. These
-          clues
-          are not only unusable now and in the future, but they are hard to find as they are not denoted in a
-          standardized way, usually with some [editorial notes] or ellipsis..., undifferentiated from other
-          irrelevant
-          commentary that takes the same form.</p>
 
-        <h2 id="plan-">Plan:</h2>
-        <p>Basic web crawler/scraper BFS approach:</p>
-        <p>Start at the root of the site. Download the root page, and grab all links from the page. Then, for
-          each
-          link,
-          download the page, and repeat.</p>
+        <h2 id="plan-">Planning the Implementation</h2>
+        <p>So, we want a way to parse the crawl the webpages of J! Archive, downloading new game/clue files as we move
+          along. This problem can be broken down simply into two problems: grabbing links while traversing the archive
+          and determining which links are to HTML pages that need to be downloaded.</p>
+
+        <h3>Crawling</h3>
+
+        <p>Thankfully, the first part is more or less solved, web crawlers are about as old as the web itself.
+          Generally, a web crawler loads an HTML page, parses the HTML to grab all link tags, and queue them each to
+          visit next. An extra-intelligent crawler would maybe use a smart queue that prioritizes highly ranked pages
+          (by traditional PageRank, visits, traffic, update frequency, or other factors). </p>
+
+        <p>For us, though, crawling will be even simpler, because we have the benefit of J! Archive's unchanging
+          structure. We only need the HTML data from 3 urls.</p>
+
+        <pre><code>/listseasons.php
+/showseason.php?season=&lt;id&gt;
+/showgame.php?game_id=&lt;id&gt;
+</code></pre>
+
+        <p>The <code>listseasons</code> page holds a table of all seasons, with each season having a reference to its
+          <code>showseason</code> page. Here's what it looks like to a human user:
+        </p>
+        <img src="img/listseasons.png" class="fullwidth-image"><img>
+
+        <p>Similarly, the <code>showseason</code> page holds a table of all games in the season, with each game having a
+          reference to its <code>showgame</code> page.
+        </p>
+        <img src="img/showseason.png" class="fullwidth-image"><img>
+
+        <p>And once we're at the <code>showgame</code> level, the clue texts and solutions are present directly in the
+          HTML. We can stop here; downloading this HTML will give the next parse/load process all the info it needs.</p>
+        <img src="img/showgame.png" class="fullwidth-image"><img>
+
+        <h3>Downloading</h3>
+
+        <p>We'll already have the HTML loaded for each of these pages, so to complete the "download" process, we just
+          need to write them to disk. The tricky
+          part here will be limiting the downloads to just files we need, so what exactly consitutes a file that we
+          need?</p>
+
+        <p>
+          We want to include all clues, so we need all game files. Any game file that is not already downloaded should
+          be downloaded, and any game file that has been updated should be downloaded. For simplicity's sake we can just
+          start with downloading all <code>showgames</code> pages, indexing them by their game ids. If during crawling
+          we come across a showgames page for a game id we don't have a file for, we make sure to download it before
+          continuing the crawling process.
+        </p>
+
+        <p>It probably also makes sense to keep records of the <code>listseasons</code> page and each
+          <code>showseasons</code> page, since we pick them up along the way anyways.
+        </p>
+
         <h3 id="dev-progress-">Dev progress:</h3>
         <p>Currently: Focus on keeping good raw HTML data.</p>
         <ul>

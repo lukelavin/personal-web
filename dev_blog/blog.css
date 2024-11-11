@@ -98,7 +98,7 @@ h3 {
 }
 
 .fullwidth-image {
-    width: 100%;
+    max-width: 100%;
 }
 
 mark {
@@ -307,6 +307,6 @@ mark {
     }
 
     .article-list {
-      display: none;
+        display: none;
     }
 }
