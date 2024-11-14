@@ -145,20 +145,25 @@
           Doing so will also greatly aid in solving the challenges in the actual load process.
         </p>
 
-        <h2 id="plan-">Planning the Implementation</h2>
-        <p>So, we want a way to parse the crawl the webpages of J! Archive, downloading new game/clue files as we move
-          along. This problem can be broken down simply into two problems: grabbing links while traversing the archive
-          and determining which links are to HTML pages that need to be downloaded.</p>
+        <h2 id="plan-">Implementation</h2>
+        <p>So, we want to crawl the webpages of J! Archive, downloading new game/clue files as we move
+          along. Thankfully, web crawlers are about as old as the web itself. </p>
 
-        <h3>Crawling</h3>
-
-        <p>Thankfully, the first part is more or less solved, web crawlers are about as old as the web itself.
+        <p>
           Generally, a web crawler loads an HTML page, parses the HTML to grab all link tags, and queue them each to
           visit next. An extra-intelligent crawler would maybe use a smart queue that prioritizes highly ranked pages
-          (by traditional PageRank, visits, traffic, update frequency, or other factors). </p>
+          (by traditional PageRank, visits, traffic, update frequency, or other factors), but we should be able to
+          leverage our pre existing knowledge of the archive site to make things simpler for ourselves.
+        </p>
 
-        <p>For us, though, crawling will be even simpler, because we have the benefit of J! Archive's unchanging
-          structure. We only need the HTML data from 3 urls.</p>
+        <h3>J! Archive</h3>
+
+        <p>
+          Let's take a look at <a href="j-archive.com">J! Archive</a> and see that. Looking at the
+          website calls to mind
+          a more classic era of the internet, and its simplicity makes it
+          relatively easy to see how we can crawl through its games in a simple way.
+        </p>
 
         <pre><code>/listseasons.php
 /showseason.php?season=&lt;id&gt;
@@ -166,37 +171,28 @@
 </code></pre>
 
         <p>The <code>listseasons</code> page holds a table of all seasons, with each season having a reference to its
-          <code>showseason</code> page. Here's what it looks like to a human user:
+          <code>showseason</code> page. There's also some potentially useful info of how many games each season has.
+          Here's what it looks like to a human user:
         </p>
         <img src="img/listseasons.png" class="fullwidth-image"><img>
 
-        <p>Similarly, the <code>showseason</code> page holds a table of all games in the season, with each game having a
+        <p>Drilling down one layer of links into the <code>showseason</code> pages, we can see a similar structure. The
+          page holds a table of all games in the season, with each game having a
           reference to its <code>showgame</code> page.
         </p>
         <img src="img/showseason.png" class="fullwidth-image"><img>
 
-        <p>And once we're at the <code>showgame</code> level, the clue texts and solutions are present directly in the
-          HTML. We can stop here; downloading this HTML will give the next parse/load process all the info it needs.</p>
+        <p>And just one layer down, once we're at the <code>showgame</code> level, the clue texts and solutions are
+          present directly in the
+          HTML. We can stop here! Downloading this HTML will give the next parse/load process all the info it needs.</p>
         <img src="img/showgame.png" class="fullwidth-image"><img>
 
-        <h3>Downloading</h3>
-
-        <p>We'll already have the HTML loaded for each of these pages, so to complete the "download" process, we just
-          need to write them to disk. The tricky
-          part here will be limiting the downloads to just files we need, so what exactly consitutes a file that we
-          need?</p>
-
         <p>
-          We want to include all clues, so we need all game files. Any game file that is not already downloaded should
-          be downloaded, and any game file that has been updated should be downloaded. For simplicity's sake we can just
-          start with downloading all <code>showgames</code> pages, indexing them by their game ids. If during crawling
-          we come across a showgames page for a game id we don't have a file for, we make sure to download it before
-          continuing the crawling process.
+          With ~40 seasons of a few hundred games each, we get a total of ~10,000 game files. This is a manageable
+          enough number that I think the simplest approach is to go down the site map layer-by-layer, downloading the
+          list of seasons, then each of the seasons, and then each of the games for each season.
         </p>
 
-        <p>It probably also makes sense to keep records of the <code>listseasons</code> page and each
-          <code>showseasons</code> page, since we pick them up along the way anyways.
-        </p>
 
         <h3 id="dev-progress-">Dev progress:</h3>
         <p>Currently: Focus on keeping good raw HTML data.</p>
